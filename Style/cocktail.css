@@ -1,0 +1,32 @@
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  #cocktail {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(221, 179, 238);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    margin: 1vw;
+    padding: 10px;
+    height: 45vh;
+    width: 15vw;
+    background-color: rgb(255, 215, 85);
+    box-shadow: 10px 5px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    overflow-y: auto;
+    /*permet de définir les bords de la carte*/
+  }
+
+  img {
+    max-height: 40%;
+    object-fit: fill;
+  }
