@@ -4,22 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<input type="text" id="searchInput">
-<input type="radio" name="searchType" id="searchByName" checked> Recherche par Nom
-<input type="radio" name="searchType" id="searchByIngredient"> Recherche par Ingrédients
-<button id="searchButton">Search</button>
-<body>
-    <Header>
+    <title>Cocktail Bored</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="3085958.png">
+    <link rel="stylesheet" href="Style/cocktail.css">
+
+    <style>
+        h1,
+        h4,
+        h2 {
+            color: white;
+        }
+
+        h2 {
+            color: rgb(233, 221, 112);
+            font-size: 24px;
+        }
+
+        button {
+            background-color: rgb(233, 221, 112);
+            color: rgb(0, 0, 0);
+            border: white;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(185, 168, 11);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+    </style>
+
+    <div>
         <h2> Cocktail Bored </h2>
+    </div> <!--mettre en noir-->
+
+</head>
+
+<body>
+
+    <Header>
         <H1> Welcom to Cocktail Bored</H1>
 
+        <h4>Try the cockatail shaker for a random Cocktail</h4>
+
+        <button> Shake me a Cocktail </button>
+        <!--penser a  faire un grid + bouton en rouge : 
+        display: flex; 
+        justify-content: flex-end; -->
+
+        <h2> Thai coffee </h2>
+        <!-- mettre a droite -->
 
     </Header>
 
-    <footer>
+    <main>
+        <form action="pif" id="pif">
+            <input type="text" id="searchInput" placeholder="search a cocktail">
 
+            <div>
+                <input type="radio" name="searchType" id="searchByIngredient"> Ingrédients
+                <input type="radio" name="searchType" id="searchByName" checked> Cocktail Name
+            </div>
+
+            <button type="submit" id="searchButton">Search</button>
+        </form>
+
+        <div id="paf"></div>
+        
+    </main>
+
+    <footer>
 
     </footer>
 </body>
