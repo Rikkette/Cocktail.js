@@ -35,8 +35,8 @@ function displayResults(drinks) {
         resultasContainer.innerHTML = '<p cass="text-center">no results.<p/>';
         return;
     }
-    drinks.forEach((drink)=> {
-        const col =document.createElement('div');
+    drinks.forEach((drink) => {
+        const col = document.createElement('div');
         col.className = 'col-md-4';
         col.innerHTML = `
       <div class="card h-100">
@@ -51,8 +51,10 @@ function displayResults(drinks) {
 
     })
 }
-/*fonction pour récupérer les details d'un cocktail grâce a son l'id*/ 
-@param {*} id
+/**
+* fonction pour récupérer les details d'un cocktail grâce a son l'id
+* @param {*} id
+*/
 
 function getDetails(id) {
     fetch(`${API_BASE}lookup.php?i=${id}`)
@@ -60,4 +62,40 @@ function getDetails(id) {
         .then((data) => displayDetails(data.drinks[0]))
         .catch(console.error)
 }
-/* Fonction afficher les details d'un cocktail */ 
+/**
+*Fonction afficher les details d'un cocktail dans la modal 
+@param {*} drink
+*/
+
+function displayDetails(drink) {
+    titre.innerHTML = `<h4>` + drink.strDrink + `</h4>
+    <div class="container-fluid"> 
+       <div class="row">
+           <div class="col-md-4">
+               <p><strong>Category :</strong> ${drink.strCategory}</p>
+           </div>
+           <div class="col-md-4">
+               <p><strong>Glass To Use :</strong> ${drink.strGlass}</p>
+           </div>
+           <div class="col-md-4">
+               <p><strong>Type :</strong> ${drink.strAlcoholic}</p>
+           </div>
+       </div>
+   </div> `;
+    image.src = drink.strDrinkThumb;
+    // Catégorie, type de verre et alcool
+    ingredient.innerHTML = "";
+
+    // Liste des ingrédients avec dosages
+    // je récupère toutes les clés (propriétés de l'objet drink)
+    Object.keys(drink)
+        .filter((key) => key.startsWith('stringredient') && drink[key]) //je filtre les clés et ne récupère que celle qui commencent par strIngredient
+        .forEach((key, index) => { // puis je boucle dessus
+            const ingredient = drink[key];
+            const measureKey = `strMeasure${index + 1}`;
+            const measure = drink[measureKey] || "Not specified quantity";
+            ingredient.innerHTML += `<li>${ingredient} - ${measure}</li>`;
+        });
+
+    instructions.textContent = drink.strinstructions;
+}

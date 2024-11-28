@@ -64,18 +64,19 @@
     </Header>
 
     <main>
-        <form action="pif" id="pif">
+        <form action="formePage" id="formePage">
             <input type="text" id="searchInput" placeholder="search a cocktail">
 
             <div>
+                <input class="form-check-input" type="radio" name="searchType" id="searchByName" value="name" checked>
+                <label class="form-check-label" for="searchByName">Cocktail Name</label>
+            </div>
+            <div>
                 <input type="radio" name="searchType" id="searchByIngredient"> Ingrédients
-                <input type="radio" name="searchType" id="searchByName" checked> Cocktail Name
             </div>
 
             <button type="submit" id="searchButton">Search</button>
         </form>
-
-        <div id="paf"></div>
         
     </main>
 
