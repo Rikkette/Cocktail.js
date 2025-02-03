@@ -1,5 +1,5 @@
 const button = document.getElementById("searchButton");
-const input = document.getElementById("searchInput");
+const searchInput = document.getElementById("searchInput");
 const resultasContainer = document.getElementById("results");
 const titre = document.getElementById("titre")
 const image = document.getElementById("image")
@@ -7,9 +7,11 @@ const instructions = document.getElementById("instruction")
 const ingredient = document.getElementById("searchByIngredient")
 const name = document.getElementById("searchByName")
 const API_BASE = "https://www.thecocktaildb.com/api/json/v1/1/";
+const form=document.getElementById("formePage");
 
 /**/
-searchButton.addEventListener('submit', () => {
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
     const query = searchInput.value.trim();
 
 
@@ -21,20 +23,22 @@ searchButton.addEventListener('submit', () => {
             ? `${API_BASE}search.php?s=${query}`
             : `${API_BASE}filter.php?i=${query}`;
 
-    fetch(endpoint)
-        .then((response) => response.json())
-        .then((data) => displayResults(data.drinks))
-        .catch(console.error);
-});
+
+            fetch(endpoint)
+            .then((response) => response.json())
+            .then((data) => displayResults(data.drinks))
+            .catch(console.error);
+    });
 
 //fonction qui renvoie les resultats
 
 function displayResults(drinks) {
     resultasContainer.innerHTML = '';
     if (!drinks) {
-        resultasContainer.innerHTML = '<p cass="text-center">no results.<p/>';
+        resultasContainer.innerHTML = '<p class="text-center">No results.</p>';
         return;
     }
+
     drinks.forEach((drink) => {
         const col = document.createElement('div');
         col.className = 'col-md-4';
